@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somar Número</title>
+</head>
+<body>
+    <label for="InputNum">Digite o Número:</label>
+    <input type="number" name="InputNum" id="InputNum"><br><br>
+    <input type="button" value="calcular" onclick="calcular()"><br><br>
+    <div id="respSoma">Soma dos números:</div>
+    <script>
+        function calcular(){
+            let num = parseInt(document.getElementById("InputNum").value);
+            let s = somaDeNumeros(num);
+            document.getElementById("respSoma").innerText = s;
+        }
+
+
+        function somaDeNumeros(num){
+            let soma = 0;
+            for (let i = 1; i <=num; i++){
+                soma = soma + i;
+            }
+            return soma;
+        }
+
+    </script>
+</body>
+</html>

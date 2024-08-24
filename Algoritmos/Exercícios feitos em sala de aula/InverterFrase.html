@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Inverta a sua frase:</h1>
+    <label for="InputS">Digite a frase:</label>
+    <input type="text" id="InputS"> <br><br>
+    <input type="button" value="inverter" onclick="inverter()"><br><br>
+    <div id="saida">Frase invertida:</div>
+    <script>
+        function inverter(){
+            let frase = document.getElementById("InputS").value;
+            let s = aoContrario(f)
+            document.getElementById("saida").innerText = s;
+        }
+
+        function aoContrario(frase){
+            let NS = "";
+            for (let i = frase.length-1; i >= 0; i--){
+                NS+= frase[i];
+            }
+            return NS;
+        }
+    </script>
+</body>
+</html>

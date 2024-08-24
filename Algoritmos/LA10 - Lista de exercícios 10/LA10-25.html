@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra iformaçoes com as idades</h1>
+    <label for="idades">Digite o conjunto da idades separadas por vírgulas:</label>
+    <input type="text" id="idades" placeholder="Digite aqui :D"> <br><br>
+    <button onclick="idades()">descubra</button> <br><br>
+    <div id="saida">O resultado será visto aqui:</div> 
+    <script>
+         function idades() {
+            let idades = document.getElementById("idades").value;
+            let dividaAsIdades = idades.split(',').map(Number);
+            let funcao1=maisDe21(dividaAsIdades);
+            let funcao2=nascidosBissexto(dividaAsIdades);
+            let funcao3= somaIdades(dividaAsIdades);
+            let funcao4= mediaIdades(dividaAsIdades);
+            document.getElementById("saida").innerText = 'Total de pessoas com mais de 21 anos: '+funcao1+'\n'+ ' Total de pessoas nascidas em anos bissextos: '+funcao2+'\n'+ ' Soma total das idades: '+ funcao3+'\n'+ ' Média total das idades: '+ funcao4
+        }
+        function maisDe21(dividaAsIdades){
+            let cont=0
+            for (let i = 0; i < dividaAsIdades.length; i++) {
+                if (dividaAsIdades[i] >= 21) {
+                    cont++
+                }
+            }
+            return cont;
+        }
+        function nascidosBissexto(dividaAsIdades){
+            let bixestos=0
+            for (let j = 0; j < dividaAsIdades.length; j++) {
+                let descAno = 2024 - dividaAsIdades[j]
+                if (descAno % 4 == 0) {
+                    bixestos++
+                }
+            }
+            return bixestos;
+        }
+        function somaIdades(dividaAsIdades){
+            let soma=0
+            for (let k = 0; k < dividaAsIdades.length; k++) {
+                soma += dividaAsIdades[k]
+            }
+            return soma;
+        }
+        function mediaIdades(dividaAsIdades){
+            let soma2=0
+            let soma=0
+            for (let k = 0; k < dividaAsIdades.length; k++) {
+                soma += dividaAsIdades[k]
+            }
+            for (let l = 0; l < dividaAsIdades.length; l++) {
+                soma2++
+            }
+           let media = soma / soma2;
+           return media;
+        }
+    </script>
+</body>
+</html>

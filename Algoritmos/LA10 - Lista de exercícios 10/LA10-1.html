@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Número ao quadrado</h1>
+    <label for="num">Digite um número:</label>
+    <input type="number" id="num"> <br><br>
+    <input type="button" value="calcular" onclick="calcular()">
+    <div id="saida">Calcule:</div>
+    <script>
+        function calcular(){
+            let num= parseInt(document.getElementById("num").value);
+            let s= fórmula(num)
+            document.getElementById("saida").innerText=s;
+        }
+        function fórmula(num) {
+          let resposta= "Seu número ao quadrado é "+num**2
+         return resposta;
+        }
+    </script>
+</body>
+</html>
