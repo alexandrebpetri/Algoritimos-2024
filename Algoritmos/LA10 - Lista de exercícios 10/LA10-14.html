@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Verifique se a palavra é um palindromo</h1>
+    <label for="frase">Insira a frase:</label>
+    <input type="text" id="frase" placeholder="Digite aqui :D"> <br><br>
+    <button onclick="validacao()">verificar</button> <br><br>
+    <div id="saida">O resultado será visto aqui:</div>
+    <script>
+        function validacao() {
+            let frase = document.getElementById("frase").value;
+            let fraseInvertida = ''
+            let resp = ''
+            for (let i = frase.length - 1; i >= 0; i--) {
+                fraseInvertida += frase.charAt(i)
+            }
+            let funcao = palindromo(fraseInvertida, frase);
+            if (funcao) {
+                resp = 'Sua palavra é um palindromo.'
+            }
+            else {
+                resp = 'Sua palavra não é um palindromo.'
+            }
+            document.getElementById("saida").innerText = resp;
+        }
+        function palindromo(fraseInvertida, frase) {
+            let validar = false;
+            if (fraseInvertida === frase) {
+                 validar = true;
+            }
+            return validar;
+        }
+    </script>
+</body>
+</html>

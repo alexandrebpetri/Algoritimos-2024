@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Separar</title>
+</head>
+
+<body>
+    <label for="InputF1">Digite uma Frase:</label>
+    <input type="text" name="InputF1" id="InputF1" placeholder="Por exemplo: Amor"><br><br>
+    <input type="button" value="Separar" onclick="separar()"> <br><br>
+    <label for="spanresp">Resposta:</label>
+    <span id="spanresp"></span>
+    <script>
+        function separar() {
+            let frase = document.getElementById("InputF1").value;
+            let vogal = "";
+            let consoante = "";
+            let l = frase.toLowerCase();
+            for (let i = 0; i < l.length; i++) {
+                if (l[i] === "a" || l[i] === "e" || l[i] === "i" || l[i] === "o" || l[i] === "u") {
+                    vogal += l[i];
+                }
+                else {
+                    consoante += l[i];
+                }
+
+            }
+            document.getElementById("spanresp").textContent = vogal + " " + consoante
+        }
+    </script>
+</body>
+
+</html>

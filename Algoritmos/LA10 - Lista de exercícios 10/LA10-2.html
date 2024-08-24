@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitagoras</title>
+</head>
+<body>
+    <h1>Pitágoras</h1>
+    <label for="InputB">Valor de B:</label>
+    <input type="number" name="InputB" id="InputB"> <br><br>
+    <label for="InputC">Valor de C:</label>
+    <input type="number" name="InputC" id="InputC"> <br><br>
+    <input type="button" value="Calcular" onclick="calcular()"> <br><br>
+    <div id="respH">Valor de H:</div>
+    <script>
+        function calcular(){
+            let b = parseFloat(document.getElementById("InputB").value);
+            let c = parseFloat(document.getElementById("InputC").value);
+            let h = pitagoras(b,c);
+            document.getElementById("respH").innerText = h;
+        }
+
+
+        function pitagoras(b,c){
+        let h = 0
+        h = Math.sqrt (b**2 + c**2)
+        return h;
+    }
+    </script>
+</body>
+</html>

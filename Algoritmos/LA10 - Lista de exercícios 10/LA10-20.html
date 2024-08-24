@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra qual é o maior número do conjunto</h1>
+    <label for="nums">Digite o conjunto separado por vírgulas:</label>
+    <input type="text" id="nums" placeholder="Digite aqui :D"> <br><br>
+    <button onclick="funcaoConj()">descubra</button> <br><br>
+    <div id="saida">O resultado será visto aqui:</div>
+    <script>
+        function funcaoConj(){
+            let  numeros= document.getElementById("nums").value;
+            let array= numeros.split(",").map(Number);
+            let funcao= verificarMaiorNum(array);
+            document.getElementById("saida").innerText=funcao
+        }
+        function verificarMaiorNum(array){
+            let maior = array[0];
+            for(let i = 1; i < array.length; i++){
+                if(array[i] > maior){
+                    maior = array[i];
+                }
+            }
+            return maior;
+        }
+    </script>
+</body>
+</html>

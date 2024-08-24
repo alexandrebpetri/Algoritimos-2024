@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calcule a média dos alunos</h1>
+    <label for="n1">Digite a nota 1:</label>
+    <input type="number" id="n1"> <br><br>
+    <label for="n2">Digite a nota 2:</label>
+    <input type="number" id="n2"> <br><br>
+    <label for="n3">Digite a nota 3:</label>
+    <input type="number" id="n3"> <br><br>
+    <label for="n4">Digite a nota 4:</label>
+    <input type="number" id="n4"> <br><br>
+    <button onclick="cacularMedia()">Calcular</button> <br><br>
+    <div id="saida">Descubra se o aluno foi aprovado:</div>
+    <script>
+        function cacularMedia(){  
+            let n1= parseFloat(document.getElementById("n1").value);
+            let n2= parseFloat(document.getElementById("n2").value);
+            let n3= parseFloat(document.getElementById("n3").value);
+            let n4= parseFloat(document.getElementById("n4").value);
+            let media= (n1+n2+n3+n4)/4;
+            let funcao= situacaoDoAluno(media);
+            document.getElementById("saida").innerText=funcao;
+        }
+        function situacaoDoAluno(media){
+            let resp='';
+            if(media >= 9.0){
+                resp = 'O aluno está aprovado pois tirou A';
+            }
+            else if(media >= 7.5){
+                resp = 'O aluno está aprovado pois tirou B';
+            }
+            else if(media >= 6.0){
+                resp = 'O aluno está aprovado pois tirou C';
+            }
+            else if(media >= 4.0){
+                resp = 'O aluno está reprovado pois tirou D';
+            }
+            else {
+                resp = 'O aluno está reprovado pois tirou E';
+            }
+            return resp;
+        }
+    </script>
+</body>
+</html>
