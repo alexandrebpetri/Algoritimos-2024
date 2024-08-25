@@ -6,6 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+     <h1>Calcule quantos litros de Meia-Cola foram comprados</h1>
+    <label for="inputLatas">Digite quantas de latas foram compradas:</label>
+    <input type="number" id="inputLatas" placeholder="Exemplo 10"> <br><br>
+    <label for="inputGarrafas600">Digite quantas Garrafas (600ml) foram compradas:</label>
+    <input type="number" id="inputGarrafas600" placeholder="Exemplo 10"> <br><br>
+    <label for="inputGarrafas2Litros">Digite quantas Garrafas (2 litros) foram compradas:</label>
+    <input type="number" id="inputGarrafas2Litros" placeholder="Exemplo 10"> <br><br>
+    <button onclick="definir()">calcular</button> <br><br>
+    <div id="saida">O resultado aparecerá aqui:</div>
+    <script>
+        function definir() {
+            let latas = parseFloat(document.getElementById("inputLatas").value);
+            let g600Ml = parseFloat(document.getElementById("inputGarrafas600").value);
+            let g2L = parseFloat(document.getElementById("inputGarrafas2Litros").value);
+            let resultado = funcaoRefri(latas, g600Ml, g2L);
+            document.getElementById("saida").innerText = resultado;
+        }
+        function funcaoRefri(latas, g600Ml, g2L) {
+            let litros = (latas * 0.35) + (g600Ml * 0.6) + (g2L * 2);
+            return 'Foram comprados ' + litros.toFixed(2) + ' litros de Meia-Cola.'
+        }
+    </script>
 </body>
 </html>
