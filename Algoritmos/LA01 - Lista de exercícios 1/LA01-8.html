@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calcule a distância entre dois pontos no plano cartesiano</h1>
+    <label for="inputX1">Digite o valor do ponto X1:</label>
+    <input type="number" id="inputX1" placeholder="Exemplo: 4"> <br><br>
+    <label for="inputX2">Digite o valor do ponto X2:</label>
+    <input type="number" id="inputX2" placeholder="Exemplo: 4"> <br><br>
+    <label for="inputY1">Digite o valor do ponto Y1:</label>
+    <input type="number" id="inputY1" placeholder="Exemplo: 4"> <br><br>
+    <label for="inputY2">Digite o valor do ponto Y2:</label>
+    <input type="number" id="inputY2" placeholder="Exemplo: 4"> <br><br>
+    <button onclick="definir()">calcular</button> <br><br>
+    <div id="saida">O resultado irá aparecer aqui</div>
+    <script>
+        function definir() {
+        let x1 = parseFloat(document.getElementById("inputX1").value);
+        let x2 = parseFloat(document.getElementById("inputX2").value);
+        let y1 = parseFloat(document.getElementById("inputY1").value);
+        let y2 = parseFloat(document.getElementById("inputY2").value);
+        let resultado = distancia(x1, x2, y1, y2);
+        document.getElementById("saida").innerText = resultado;
+        }
+        function distancia(x1, x2, y1, y2) {
+            let d = Math.sqrt ((x2 - x1)**2 + (y2 - y1)**2)
+            return d.toFixed(2);
+        }
+    </script>
+</body>
+</html>
