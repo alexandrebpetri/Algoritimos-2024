@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Remédios</title>
+</head>
+<body>
+    <label for="inputID">Insira o ID do remédio:</label>
+    <input type="number" id="inputID"> <br><br>
+    <label for="inputNome">Insira o nome do remédio:</label>
+    <input type="text" id="inputNome"> <br><br>
+    <label for="inputPeso">Insira o peso do remédio (em gramas):</label>
+    <input type="number" id="inputPeso"> <br><br>
+    <label for="inputFabricante">Insira o nome da marca fabricante do remédio:</label>
+    <input type="text" id="inputFabricante"> <br><br>
+    <label for="inputDataFabricacao">Insira a data de fabricação do remédio:</label>
+    <input type="date" id="inputDataFabricacao"> <br><br>
+    <input type="button" value="inserir" onclick="inserirRemedio()"> <br><br>
+    <input type="button" value="listar" onclick="listarRemedio()"> <br><br>
+    <div id="outputListaDeRemedios"></div>
+    <script src="Remedio.js"></script>
+    <script src="remediosFuncoes.js"></script>
+</body>
+</html>
