@@ -14,7 +14,6 @@ function inserirNaLista() {
 
 }
 
-
 function listarAlunos() {
     document.getElementById("outputListaAlunos");
     outputListaAlunos.innerHTML = ''
@@ -27,7 +26,7 @@ function listarAlunos() {
 }
 
 function adicionarAlunos() {
-    let aluno = new Alunos("1111", "Leo", "8", "10", "5", "3");
+    let aluno = new Alunos("8888", "Reltih", "8", "10", "5", "3");
     listaAlunos.push(aluno);
     aluno = new Alunos("9999", "Uener", "8", "10", "5", "3");
     listaAlunos.push(aluno);
@@ -49,6 +48,7 @@ function procurarRa(raProcurado, listaAlunos) {
     }
     return null;
 }
+
 function raProcurar() {
     let oRaInformado = document.getElementById("inputRa").value;
     const f2 = procurarRa(oRaInformado, listaAlunos);
@@ -60,5 +60,29 @@ function raProcurar() {
         document.getElementById("inputN2").value = f2.n2;
         document.getElementById("inputN3").value = f2.n3;
         document.getElementById("inputN4").value = f2.n4;
+    }
+}
+
+function procurarNome(nomeProcurado, listaAlunos) {
+    for (let j = 0; j < listaAlunos.length; j++) {
+        const stixe = listaAlunos[j];
+        if (stixe.nome == nomeProcurado) {
+            return stixe;
+        }
+    }
+    return null;
+}
+
+function acharNome() {
+    let oNomeInformado = document.getElementById("inputNome").value;
+    const exits = procurarNome(oNomeInformado, listaAlunos);
+    if (exits == null) {
+        alert("não está na lista");
+    } else {
+        document.getElementById("inputRa").value = exits.ra;
+        document.getElementById("inputN1").value = exits.n1;
+        document.getElementById("inputN2").value = exits.n2;
+        document.getElementById("inputN3").value = exits.n3;
+        document.getElementById("inputN4").value = exits.n4;
     }
 }
