@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Função</title>
+</head>
+
+<body>
+    <label for="InputX">Inicio:</label>
+    <input type="text" name="InputX" id="InputX" placeholder="Por exemplo: 1"> <br><br>
+    <label for="Fim">Fim:</label>
+    <input type="text" name="Fim" id="Fim" placeholder="Por exemplo: 30"> <br><br>
+    <input type="button" value="Calcular Gráfico" onclick="calcular()"> <br><br>
+    <div id="resp">...</div>
+    <script>
+        function calcular() {
+            let ix = parseInt(document.getElementById("InputX").value);
+            let fx = parseInt(document.getElementById("Fim").value);
+            y = 0;
+            let resp = "";
+            for (let x = ix; x <= fx; x++) {
+                y = x + 1;
+                resp = resp + x + ";" + y + "\n";
+            }
+            document.getElementById("resp").innerText = resp;
+        }
+    </script>
+
+</body>
+
+</html>

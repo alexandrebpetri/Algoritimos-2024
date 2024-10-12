@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Descubra o desconto</h1>
+<label for="inputReais">Digite o valor (em reais):</label>
+<input type="number" id="inputReais" placeholder="Exemplo: 100"> <br><br>
+<label for="inputDesconto">Digite o desconto (em %):</label>
+<input type="number" id="inputDesconto" placeholder="Exemplo: 10"> <br><br>
+<button onclick="definir()">calcular</button> <br><br>
+<div id="saida">O resultado aparecerá aqui</div>
+<script>
+    function definir() {
+        let reais = parseFloat(document.getElementById("inputReais").value);
+        let desc = parseFloat(document.getElementById("inputDesconto").value);
+        let resultado = desconto(reais, desc);
+        document.getElementById("saida").innerText = resultado;
+    }
+    function desconto(reais, desc) {
+        let valorDesconto = reais * (desc / 100);
+        let valorFinal = reais - valorDesconto;
+        let resp = 'O valor com desconto será de ' + valorFinal.toFixed(2) + ' reais.';
+        return resp;
+    }
+</script>
+</body>
+</html>

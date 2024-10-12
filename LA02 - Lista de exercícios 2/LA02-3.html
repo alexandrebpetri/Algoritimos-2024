@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Converta polegadas em milímitros</h1>
+    <label for="inputPolegadas">Digite a quantidade de polegadas:</label>
+    <input type="number" id="inputPolegadas" placeholder="Exemplo: 10"> <br><br>
+    <button onclick="definir()">calcular</button> <br><br>
+    <div id="saida">O resultado aparecerá aqui</div>
+    <script>
+        function definir() {
+            let polegadas = parseFloat(document.getElementById("inputPolegadas").value);
+            let resultado = converter(polegadas);
+            document.getElementById("saida").innerText = resultado;
+        }
+        function converter(polegadas) {
+            let milimitros = polegadas* 25.4
+            return milimitros;
+        }
+    </script>
+</body>
+</html>

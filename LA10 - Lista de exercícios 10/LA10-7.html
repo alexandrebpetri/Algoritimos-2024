@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra se o ano é bissexto</h1>
+    <label for="ano">Informe o ano</label>
+    <input type="number" id="ano"> <br><br>
+    <button onclick="verificacao()">Descubra</button> <br><br>
+    <div id="saida">Descubra se o ano é bissexto</div>
+    <script>
+        function verificacao(){
+            let ano= parseInt(document.getElementById("ano").value);
+            let funcao= verificacaoDeAnoBissexto(ano);
+            let resp='';
+            if(funcao){
+                resp='O ano é bissexto';
+            }
+            else{
+                resp='O ano não é bissexto';
+            }
+            document.getElementById("saida").innerText=resp;
+        }
+        function verificacaoDeAnoBissexto(ano){
+            let achou=false;
+            if(ano%4===0){
+                achou=true;
+            }
+            return achou;
+        }
+    </script>
+</body>
+</html>

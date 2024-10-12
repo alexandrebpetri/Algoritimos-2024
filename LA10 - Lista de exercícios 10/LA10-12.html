@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra o enésimo termo do seu fibonacci</h1>
+    <label for="termo">Digite seu termo:</label>
+    <input type="number" id="termo" placeholder="Digite um número:"> <br><br>
+    <label for="Enesimotermo">Digite o enésimo termo:</label>
+    <input type="number" id="Enesimotermo" placeholder="Digite um número:"> <br><br>
+    <button onclick="caclcular()">calcule</button> <br><br>
+    <div id="saida">O resultado será visto aqui:</div>   
+    <script>
+        function caclcular(){
+            let termo= parseInt(document.getElementById("termo").value);
+            let Enesimo= parseInt(document.getElementById("Enesimotermo").value);
+            let ant=0;
+            let posterior=1;
+            let soma=0;
+            let termos=[ant,posterior]
+            for(let i=2;i<termo;i++){
+                soma= ant+posterior
+                termos+=','+soma
+                ant=posterior;
+                posterior=soma;
+            }
+            let enesimo= descobrirEnesimoTermo(Enesimo,termos);
+            document.getElementById("saida").innerText= 'Seu fibonacci resultou nos seguintes termos '+ termos+' e o enésimo numero foi: '+ enesimo;
+        }
+        function descobrirEnesimoTermo(Enesimo,termos){
+            let termosDividos= termos.split(',');
+            let pegarEnesimo=0;
+            for(let i=0;i<=termosDividos.length;i++){
+                if(i== Enesimo-1){
+                    pegarEnesimo=termosDividos[i]
+                }
+            }
+            return pegarEnesimo;
+        }
+    </script>
+</body>
+</html>

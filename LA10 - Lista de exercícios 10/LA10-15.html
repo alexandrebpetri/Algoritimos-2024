@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra o seu nome em ingles</h1>
+    <label for="inputnome">Escreva um nome:</label>
+    <input type="text" id="inputnome" placeholder="Digite aqui :D"> <br><br>
+    <button onclick="escrevaNome()">descubra</button> <br><br>
+    <div id="saida">O resultado será visto aqui:</div>   
+    <script>
+        function escrevaNome() {
+            let nome = document.getElementById("inputnome").value;
+            let sobrenome = 0;
+            for (let i = nome.length - 1; i >= 0; i--) {
+                if (nome.charAt(i) === " ") {
+                    sobrenome = i;
+                    break;
+                }
+            }
+            let funcao= funcaoNome(nome,sobrenome)
+            document.getElementById("saida").innerText = funcao;
+        }
+        function funcaoNome(nome,sobrenome){
+            let resp = "";
+            for (let i = sobrenome; i < nome.length; i++) {
+                resp += nome.charAt(i)
+            }
+            resp += ','
+            for (let i = 0; i < sobrenome; i++) {
+    
+                resp += nome.charAt(i)
+            }
+            return resp;    
+        }
+    </script>
+</body>
+</html>

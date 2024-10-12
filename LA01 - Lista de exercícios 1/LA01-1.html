@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calcule a média de um aluno</h1>
+    <label for="nota1">Digite a primeira nota:</label>
+    <input type="number" id="nota1" placeholder="Exemplo: 6"> <br><br>
+    <label for="nota2">Digite a segunda nota:</label>
+    <input type="number" id="nota2" placeholder="Exemplo: 6"> <br><br>
+    <label for="nota3">Digite a terceira nota:</label>
+    <input type="number" id="nota3" placeholder="Exemplo: 6"> <br><br>
+    <label for="nota4">Digite a quarta nota:</label>
+    <input type="number" id="nota4" placeholder="Exemplo: 6"> <br><br>
+    <button onclick="calcular()">calcular</button> <br><br>
+    <div id="saida">O resultado aparecerá aqui:</div>
+    <script>
+        function calcular() {
+            let n1 = parseFloat(document.getElementById("nota1").value);
+            let n2 = parseFloat(document.getElementById("nota2").value);
+            let n3 = parseFloat(document.getElementById("nota3").value);
+            let n4 = parseFloat(document.getElementById("nota4").value);
+            let resp = calcularMedia(n1, n2, n3, n4)
+            document.getElementById("saida").innerText = 'A média é ' + resp
+        }
+        function calcularMedia(n1, n2, n3, n4) {
+            let resposta = (n1 + n2 + n3 + n4)/4
+            return resposta;
+        }
+    </script>
+</body>
+</html>

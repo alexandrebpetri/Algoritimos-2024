@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra a distancia entre dois pontos no plano Cartesiano</h1>
+    <label for="x1">Digite o valor do ponto x1:</label>
+    <input type="number" id="x1"> <br><br>
+    <label for="x2">Digite o valor do ponto x2:</label>
+    <input type="number" id="x2"> <br><br>
+    <label for="y1">Digite o valor do ponto y1:</label>
+    <input type="number" id="y1"> <br><br>
+    <label for="y2">Digite o valor do ponto y2:</label>
+    <input type="number" id="y2"> <br><br>
+    <input type="button" value="calcular" onclick="calcular()">
+    <div id="saida">Calcule a distancia dos pontos:</div>  
+    <script>
+        function calcular(){
+            let x1= parseInt(document.getElementById("x1").value);
+            let x2= parseInt(document.getElementById("x2").value);
+            let y1= parseInt(document.getElementById("y1").value);
+            let y2= parseInt(document.getElementById("y2").value);
+            let s= distanciaDosPontos(x1,x2,y1,y2);
+            document.getElementById("saida").innerText=s;
+        }
+        function distanciaDosPontos(x1,x2,y1,y2) {
+            let resposta= Math.sqrt((x2-x1)**2+(y2-y1)**2);
+            return resposta.toFixed(2);
+        }
+    </script>
+</body>
+</html>

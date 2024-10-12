@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Calcular gorjeta</h1>
+    <label for="conta">Valor da conta:</label>
+    <input type="number" id="conta"> <br><br>
+    <input type="button" value="calcular" onclick="calcular()">
+    <div id="saida">Total de gorgeta:</div>    
+    <script>
+        function calcular(){
+            let conta= parseFloat(document.getElementById("conta").value);
+            let s= gorjeta(conta)
+            document.getElementById("saida").innerText=s;
+        }
+        function gorjeta(conta) {
+        let calculo= conta*0.10;
+        let resposta= "O valor da gorjeta será de:"+calculo.toFixed(2);
+        return resposta;
+        }
+    </script>
+</body>
+</html>
