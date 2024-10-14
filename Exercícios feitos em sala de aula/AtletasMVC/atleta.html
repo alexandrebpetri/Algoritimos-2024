@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de atletas</title>
+    <link rel="stylesheet" href="atleta.css">
+</head>
+
+<body>
+    <h1>Cadastro de atletas</h1>
+
+    <div>
+        <label for="num">Número do jogador:</label>
+        <input type="number" id="num">
+        <button type="button" onclick="procure()">Procurar na lista</button><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome"><br>
+
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento"> <br>
+
+        <label for="selectPosicao">Posição do atleta:</label>
+        <select name="selectPosicao" id="selectPosicao">
+            <option value="selectOpc" disabled selected>Selecione uma opção</option>
+            <option value="goleiro">Goleiro</option>
+            <option value="defensor">Defensor</option>
+            <option value="meio-campista">Meio-campista</option>
+            <option value="atacante">Atacante</option>
+        </select> <br>
+
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01"><br>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" step="0.1"> <br>
+
+        <button onclick="adicionarAtleta()">Adicionar Atleta</button><br><br><br>
+        </div>
+
+    <h2>Atletas Cadastrados</h2>
+   
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Nome</th>
+                <th>Posição</th>
+                <th>Altura (m)</th>
+                <th>Peso (kg)</th>
+                <th>Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody id="outputListaDeAtletas">
+            <!-- Os atletas serão exibidos aqui -->
+        </tbody>
+    </table>
+    <script src="atleta.js"></script>
+    <script src="atletaController.js"></script>
+</body>
+
+</html>
