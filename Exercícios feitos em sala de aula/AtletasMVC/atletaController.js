@@ -6,14 +6,6 @@ function procurarPorNum(numProcurado, listaDeAtletas) {
     }
     return null;
 }
-function procurarPorNum(numProcurado, listaDeAtletas) {
-    for (let index = 0; index < listaDeAtletas.length; index++) {
-        if (listaDeAtletas[index].num == numProcurado) {
-            return listaDeAtletas[index];
-        }
-    }
-    return null;
-}
 
 function procure() {
     const atleta = procurarPorNum(document.getElementById('num').value, listaDeAtletas);
