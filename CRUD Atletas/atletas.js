@@ -1,8 +1,8 @@
 class Atleta {
-    constructor(num, nome, dataNascimento, posicao, altura, peso, posicaoNaLista) {
+    constructor(num, nome, nascimento, posicao, altura, peso, posicaoNaLista) {
         this.num = num;
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
+        this.nascimento = nascimento;
         this.posicao = posicao;
         this.altura = altura;
         this.peso = peso;

@@ -1,0 +1,128 @@
+/* Estilo geral para o body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+/* Estilo para o container que envolve os títulos */
+.header-container {
+    position: absolute;
+    top: 20px; /* Mantém os títulos no topo */
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilo para o título principal */
+h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: #131010;
+}
+
+/* Estilo para o subtítulo */
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #061c88;
+}
+
+/* Estilo para o container de login */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Estilo para o título de login */
+.login-container h2 {
+    margin-bottom: 25px;
+    color: #333333;
+}
+
+/* Estilo para os labels */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Estilo para os inputs */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333333;
+}
+
+/* Estilo para os inputs em foco */
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #061c88;
+    outline: none;
+}
+
+/* Estilo para o botão */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #061c88;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo para o botão ao passar o mouse */
+button:hover {
+    background-color: #f5f5f5;
+    color: #061c88;
+    border: 1px solid #061c88;
+}
+
+/* Estilo para responsividade */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .login-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+
+    input[type="text"], input[type="password"] {
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

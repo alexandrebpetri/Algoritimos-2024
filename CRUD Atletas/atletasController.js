@@ -94,8 +94,8 @@ function salvar() {
     const nome = document.getElementById("inputNome").value;
     const nascimento = document.getElementById("dataNascimento").value;
     const posicao = document.getElementById("selectPosicao").value;
-    const altura = parseInt(document.getElementById("inputAltura").value);
-    const peso = document.getElementById("inputPeso").value;
+    const altura = parseFloat(document.getElementById("inputAltura").value);
+    const peso = parseFloat(document.getElementById("inputPeso").value);
     //verificar se o que foi digitado pelo USUÁRIO está correto
     if (num && nome && nascimento && posicao && altura && peso) {// se tudo certo 
         switch (oQueEstaFazendo) {
@@ -150,9 +150,26 @@ function preparaListagem(vetor) {
 }
 
 //backend->frontend (interage com html)
-function listar() {
-    document.getElementById("outputSaida").innerHTML = preparaListagem(listaAtleta);
-}
+    function listar() {
+        const tbody = document.querySelector("#outputSaida tbody");
+        tbody.innerHTML = ""; // Limpa a tabela antes de preencher
+    
+        listaAtleta.forEach(atleta => {
+            const linha = document.createElement("tr");
+    
+            linha.innerHTML = `
+                <td>${atleta.num}</td>
+                <td>${atleta.nome}</td>
+                <td>${atleta.nascimento}</td>
+                <td>${atleta.posicao}</td>
+                <td>${atleta.altura.toFixed(2)}</td>
+                <td>${atleta.peso.toFixed(1)}</td>
+            `;
+    
+            tbody.appendChild(linha);
+        });
+    }
+    
 
 function cancelarOperacao() {
     limparAtributos();
@@ -191,11 +208,9 @@ function mostrarDadosAtleta(atleta) {
 function limparAtributos() {
     document.getElementById("inputNome").value = "";
     document.getElementById("dataNascimento").value = "";
-    document.getElementById("selectPosicao").value = "";
+    document.getElementById("selectPosicao").value = "selectOpc";
     document.getElementById("inputAltura").value = "";
     document.getElementById("inputPeso").value = "";
-    document.getElementById("inputDiretor").value = "";
-
     bloquearAtributos(true);
 }
 
@@ -203,8 +218,8 @@ function bloquearAtributos(soLeitura) {
     //quando a chave primaria possibilita edicao, tranca (readonly) os outros e vice-versa
     document.getElementById("inputNum").readOnly = !soLeitura;
     document.getElementById("inputNome").readOnly = soLeitura;
-    document.getElementById("dataNascimento").readOnly  = soLeitura;
-    document.getElementById("selectPosicao").readOnly = soLeitura;
+    document.getElementById("dataNascimento").readOnly = soLeitura;
+    document.getElementById("selectPosicao").disabled = soLeitura;
     document.getElementById("inputAltura").readOnly = soLeitura;
     document.getElementById("inputPeso").readOnly = soLeitura;
 }
