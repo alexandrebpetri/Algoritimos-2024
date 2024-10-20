@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>CRUD Atletas</title>
-   <link rel="stylesheet" href="atletas.css">
+   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
    <!-- Formulário para cadastro -->
    <label for="inputNum">Número do atleta:</label>
-   <input type="number" name="inputNum" id="inputNum" min="1" max="99">
+   <input type="number" name="inputNum" id="inputNum" min="1">
    <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
    <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
    <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
@@ -43,7 +43,7 @@
    <input type="number" name="inputPeso" id="inputPeso" step="0.1">
    <br><br>
    
-   <div id="divAviso" style="background-color: antiquewhite;"></div>
+   <div id="divAviso" style="display: none;"></div>
    <br>
    <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
    <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
@@ -66,7 +66,7 @@
        </tbody>
    </table>
 
-   <script src="atletas.js"></script>
+   <script src="atletas.js"></script> 
    <script src="atletasController.js"></script>
 </body>
 

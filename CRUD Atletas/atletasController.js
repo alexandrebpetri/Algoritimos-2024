@@ -22,11 +22,11 @@ function procure() {
         atleta = procurePorChavePrimaria(num);
         if (atleta) { //achou na lista
             mostrarDadosAtleta(atleta);
-            visibilidadeDosBotoes('inline', 'none', 'inline', 'inline', 'none'); // Habilita botões de alterar e excluir
+            visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'none', 'inline'); // Habilita botões de alterar e excluir
             mostrarAviso("Achou na lista, pode alterar ou excluir");
         } else { //não achou na lista
             limparAtributos();
-            visibilidadeDosBotoes('inline', 'inline', 'none', 'none', 'none');
+            visibilidadeDosBotoes('none', 'inline', 'none', 'none', 'none', 'inline');
             mostrarAviso("Não achou na lista, pode inserir");
         }
     } else {
@@ -51,7 +51,7 @@ function carregarAtletasPredefinidos() {
 
 function inserir() {
     bloquearAtributos(false);
-    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
+    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
     oQueEstaFazendo = 'inserindo';
     mostrarAviso("INSERINDO - Digite os atributos e clic o botão salvar");
     document.getElementById("inputNum").focus();
@@ -64,7 +64,7 @@ function alterar() {
     // Remove o readonly dos campos
     bloquearAtributos(false);
 
-    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline');
+    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline', 'inline');
 
     oQueEstaFazendo = 'alterando';
     mostrarAviso("ALTERANDO - Digite os atributos e clic o botão salvar");
@@ -73,10 +73,11 @@ function alterar() {
 // Função para excluir um elemento da lista
 function excluir() {
     bloquearAtributos(false);
-    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
+    visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
 
     oQueEstaFazendo = 'excluindo';
     mostrarAviso("EXCLUINDO - clic o botão salvar para confirmar a exclusão");
+    bloquearAtributos(true);
 }
 
 function salvar() {
@@ -123,7 +124,7 @@ function salvar() {
                 // console.error('Ação não reconhecida: ' + oQueEstaFazendo);
                 mostrarAviso("Erro aleatório");
         }
-        visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none');
+        visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'inline');
         limparAtributos();
         listar();
         document.getElementById("inputNum").focus();
@@ -174,14 +175,16 @@ function preparaListagem(vetor) {
 function cancelarOperacao() {
     limparAtributos();
     bloquearAtributos(true);
-    visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none');
+    visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'inline');
     mostrarAviso("Cancelou a operação de edição");
 }
 
 function mostrarAviso(mensagem) {
     //printa a mensagem na divAviso
-    document.getElementById("divAviso").innerHTML = mensagem;
-}
+        const divAviso = document.getElementById("divAviso");
+        divAviso.innerHTML = mensagem;
+        divAviso.style.display = 'block'; // Torna a div visível
+    }
 
 // Função para mostrar os dados do atleta nos campos
 function mostrarDadosAtleta(atleta) {
@@ -225,7 +228,7 @@ function bloquearAtributos(soLeitura) {
 }
 
 // Função para deixar visível ou invisível os botões
-function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSalvar) {
+function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSalvar, aviso) {
     //  visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline'); 
     //none significa que o botão ficará invisível (visibilidade == none)
     //inline significa que o botão ficará visível 
@@ -236,5 +239,6 @@ function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSal
     document.getElementById("btExcluir").style.display = btExcluir;
     document.getElementById("btSalvar").style.display = btSalvar;
     document.getElementById("btCancelar").style.display = btSalvar; // o cancelar sempre aparece junto com o salvar
+    document.getElementById("divAviso").style.display = aviso;
     document.getElementById("inputNum").focus();
 }

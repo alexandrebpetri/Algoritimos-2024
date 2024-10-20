@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0, 0, 5px, 0;
+    text-align: center;
+    /* background: linear-gradient(to bottom, #3d1eb1, #a50e0e); */
+}    
+
+#formulario {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+    margin-top: 20px;
+    margin-bottom:25px;
+    margin-left: 35%;
+    margin-right: 35%;
+    border: solid 1px #ccc;
+}
+
+#formulario h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 35px;
+}
+
+#formulario label {
+    font-weight: bold;
+    margin-top: 5px;
+    color: #333;
+    font-size: 20px;
+}
+
+#formulario input[type="date"],select {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#formulario input[type="number"], input[type="text"] {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#formulario input[type="button"] {
+    padding: 10px;
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#formulario input[type="button"]:hover {
+    background-color: #ccc;
+}
+
+#formulario input[type="button"]:active {
+    background-color: #ccc;
+}
+
+#divAviso {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%; /* Aumente o tamanho para melhorar a visibilidade */
+    margin: 20px auto; /* Centraliza a div na tela */
+}
+
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    select {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
