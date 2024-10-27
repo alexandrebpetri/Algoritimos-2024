@@ -193,7 +193,7 @@ function mostrarDadosJogador(jogador) {
 function limparAtributos() {
     document.getElementById("inputNome").value = "";
     document.getElementById("inputNasc").value = "";
-    document.getElementById("inputCategoria").value = "";
+    document.getElementById("inputCategoria").value = "Categoria";
     bloquearAtributos(true);
 }
 
@@ -202,7 +202,6 @@ function bloquearAtributos(soLeitura) {
     document.getElementById("inputId").readOnly = !soLeitura;
     document.getElementById("inputNome").readOnly = soLeitura;
     document.getElementById("inputNasc").readOnly  = soLeitura;
-    document.getElementById("inputCategoria").readOnly = soLeitura;
 }
 
 // Função para deixar visível ou invisível os botões
