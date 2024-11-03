@@ -1,5 +1,3 @@
-let codigoFonte = "";
-
 function gerarModel() {
     let nomeClasse = document.getElementById("inputNomeClasse").value.trim();
     let atributos = document.getElementById("inputAtributos").value.toLowerCase().trim();
