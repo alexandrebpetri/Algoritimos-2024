@@ -22,7 +22,7 @@ function procure() {
         atleta = procurePorChavePrimaria(num);
         if (atleta) { //achou na lista
             mostrarDadosAtleta(atleta);
-            visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'none', 'inline'); // Habilita botões de alterar e excluir
+            visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'inline', 'inline'); // Habilita botões de alterar e excluir
             mostrarAviso("Achou na lista, pode alterar ou excluir");
         } else { //não achou na lista
             limparAtributos();
@@ -164,7 +164,7 @@ function salvar() {
     const altura = parseFloat(document.getElementById("inputAltura").value);
     const peso = parseFloat(document.getElementById("inputPeso").value);
     //verificar se o que foi digitado pelo USUÁRIO está correto
-    if (num && nome && nascimento && posicao && altura && peso) {// se tudo certo 
+    if (num > 0 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
         switch (oQueEstaFazendo) {
             case 'inserindo':
                 atleta = new Atleta(num, nome, nascimento, posicao, altura, peso);
@@ -229,8 +229,8 @@ function preparaListagem(vetor) {
                 <td>${atleta.nome}</td>
                 <td>${atleta.nascimento}</td>
                 <td>${atleta.posicao}</td>
-                <td>${atleta.altura.toFixed(2)}</td>
-                <td>${atleta.peso.toFixed(1)}</td>
+                <td>${atleta.altura}</td>
+                <td>${atleta.peso}</td>
             `;
     
             tbody.appendChild(linha);
@@ -285,12 +285,12 @@ function limparAtributos() {
 
 function bloquearAtributos(soLeitura) {
     //quando a chave primaria possibilita edicao, tranca (readonly) os outros e vice-versa
-    document.getElementById("inputNum").readOnly = !soLeitura;
-    document.getElementById("inputNome").readOnly = soLeitura;
-    document.getElementById("dataNascimento").readOnly = soLeitura;
+    document.getElementById("inputNum").disabled = !soLeitura;
+    document.getElementById("inputNome").disabled = soLeitura;
+    document.getElementById("dataNascimento").disabled = soLeitura;
     document.getElementById("selectPosicao").disabled = soLeitura;
-    document.getElementById("inputAltura").readOnly = soLeitura;
-    document.getElementById("inputPeso").readOnly = soLeitura;
+    document.getElementById("inputAltura").disabled = soLeitura;
+    document.getElementById("inputPeso").disabled = soLeitura;
 }
 
 // Função para deixar visível ou invisível os botões
