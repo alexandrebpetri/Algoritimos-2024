@@ -217,25 +217,32 @@ function preparaListagem(vetor) {
 }
 
 //backend->frontend (interage com html)
-    function listar() {
-        const tbody = document.querySelector("#outputSaida tbody");
-        tbody.innerHTML = ""; // Limpa a tabela antes de preencher
-    
-        listaAtleta.forEach(atleta => {
-            const linha = document.createElement("tr");
-    
-            linha.innerHTML = `
+function listar() {
+    // Seleciona o tbody da tabela onde os dados serão inseridos
+    const tbody = document.getElementById("outputSaida").getElementsByTagName("tbody")[0];
+    let html = ""; // Variável para construir o HTML das linhas
+
+    // Itera sobre cada atleta na lista
+    for (let i = 0; i < listaAtleta.length; i++) {
+        const atleta = listaAtleta[i];
+
+        // Constrói a linha HTML com os dados do atleta
+        html += `
+            <tr>
                 <td>${atleta.num}</td>
                 <td>${atleta.nome}</td>
                 <td>${atleta.nascimento}</td>
                 <td>${atleta.posicao}</td>
                 <td>${atleta.altura}</td>
                 <td>${atleta.peso}</td>
-            `;
-    
-            tbody.appendChild(linha);
-        });
+            </tr>
+        `;
     }
+
+    // Define o HTML construído diretamente no tbody
+    tbody.innerHTML = html;
+}
+
     
 
 function cancelarOperacao() {

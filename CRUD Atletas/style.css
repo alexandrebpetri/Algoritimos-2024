@@ -66,6 +66,37 @@ body {
     background-color: #ccc;
 }
 
+#formulario input[type="file"] {
+    padding: 10px;
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#formulario input[type="file"]:hover {
+    background-color: #ccc;
+}
+
+#formulario input[type="file"]:active {
+    background-color: #ccc;
+}
+
+#formulario #preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
 #divAviso {
     background-color: #ccc;
     padding: 10px;
@@ -93,6 +124,12 @@ th, td {
 th {
     background-color: #f2f2f2;
     color: #333;
+}
+
+.imagemDoAtleta {
+    width: 50px; /* Tamanho da imagem */
+    height: 50px; /* Tamanho da imagem */
+    border-radius: 50%; /* Tornando a imagem redonda */
 }
 
 tr:hover {
