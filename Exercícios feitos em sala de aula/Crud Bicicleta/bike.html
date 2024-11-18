@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Bicicletas</title>
+ </head>
+ 
+ <body>
+ 
+    <h1>Cadastro de bicicletas</h1>
+ 
+    <label for="inputId">ID:</label>
+    <input type="number" name="inputId" id="inputId">
+    <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+    <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+    <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+    <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+    <br><br>
+ 
+    <label for="inputNome">Nome:</label>
+    <input type="text" name="inputNome" id="inputNome">
+    <br>
+
+    <label for="inputFabricante">Fabricante:</label>
+    <input type="text" name="inputFabricante" id="inputFabricante">
+    <br>
+
+    <label for="inputLancamento">Data de Lançamento:</label>
+    <input type="date" name="inputLancamento" id="inputLancamento">
+    <br>    
+
+    <label for="inputPreco">Preco:</label>
+    <input type="number" name="inputPreco" id="inputPreco">
+    <br>
+
+    <label for="inputPeso">Peso:</label>
+    <input type="number" name="inputPeso" id="inputPeso">
+    <br><br>
+    <div id="divAviso" style="background-color: antiquewhite;"></div>
+    <br>
+    <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+    <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+    <br>
+    <!-- <input type="button" value="Listar" onclick="listar()">
+     <br><br> -->
+ 
+    <div id="outputSaida" style="background-color: aqua;">...</div>
+    <br><br>
+    <h1>Ache bicicletas mais baratas do que o seu valor de compra!!</h1>
+    <label for="precoMaximo">Digite o seu valor de compra:</label>
+    <input type="number" name="precoMaximo" id="precoMaximo">
+    <label for=""></label>
+    <input type="button" value="descubra" id="precoMinimo" onclick="selecionarBicicletasPorPeso">
+    <br><br>
+    <div id="listabarato" ></div>
+    <script src="bike.js"></script>
+    <script src="bikeController.js"></script>
+ </body>
+ 
+ </html>
