@@ -6,16 +6,12 @@ body {
 }    
 
 #formulario {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    width: 30%;
-    margin-top: 20px;
-    margin-bottom:25px;
-    margin-left: 35%;
-    margin-right: 35%;
-    border: solid 1px #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-color: #ffffff;
 }
 
 #formulario h1 {
@@ -66,37 +62,6 @@ body {
     background-color: #ccc;
 }
 
-#formulario input[type="file"] {
-    padding: 10px;
-    background-color: #ffffff;
-    color: black;
-    border: solid 1px #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#formulario input[type="file"]:hover {
-    background-color: #ccc;
-}
-
-#formulario input[type="file"]:active {
-    background-color: #ccc;
-}
-
-#formulario #preview {
-    max-width: 100px;
-    max-height: 100px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
 #divAviso {
     background-color: #ccc;
     padding: 10px;
@@ -107,9 +72,12 @@ body {
 }
 
 
+
 table {
-    width: 100%;
-    margin-top: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60%;
     background-color: white;
     border-radius: 5px;
     border-collapse: collapse;
@@ -126,31 +94,52 @@ th {
     color: #333;
 }
 
-.imagemDoAtleta {
-    width: 50px; /* Tamanho da imagem */
-    height: 50px; /* Tamanho da imagem */
-    border-radius: 50%; /* Tornando a imagem redonda */
-}
-
 tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Responsividade */
+/* Regras de responsividade */
+@media (max-width: 900px) {
+    #formulario {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #aaaaaa;
+    }
+
+    table {
+        position: relative;
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
 @media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    #formulario h1 {
+        font-size: 24px;
+    }
+
+    #formulario label {
+        font-size: 16px;
+    }
+
+    #formulario input[type="button"],
     input[type="number"],
     input[type="text"],
-    input[type="date"],
     select {
         font-size: 14px;
     }
 
-    button {
+    table th, table td {
+        font-size: 12px;
         padding: 8px;
-        font-size: 14px;
     }
 
-    th, td {
-        padding: 8px;
+    table {
+        font-size: 12px;
     }
 }

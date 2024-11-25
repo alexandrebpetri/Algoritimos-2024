@@ -1,9 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CRUD Atletas</title>
+   <style>  
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0, 0, 5px, 0;
+    text-align: center;
+    /* background: linear-gradient(to bottom, #3d1eb1, #a50e0e); */
+}    
+
+#formulario {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+    margin-top: 20px;
+    margin-bottom:25px;
+    margin-left: 35%;
+    margin-right: 35%;
+    border: solid 1px #ccc;
+}
+
+#formulario h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 35px;
+}
+
+#formulario label {
+    font-weight: bold;
+    margin-top: 5px;
+    color: #333;
+    font-size: 20px;
+}
+
+#formulario input[type="date"],select {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#formulario input[type="number"], input[type="text"] {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#formulario input[type="button"] {
+    padding: 10px;
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#formulario input[type="button"]:hover {
+    background-color: #ccc;
+}
+
+#formulario input[type="button"]:active {
+    background-color: #ccc;
+}
+
+#formulario input[type="file"] {
+    padding: 10px;
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#formulario input[type="file"]:hover {
+    background-color: #ccc;
+}
+
+#formulario input[type="file"]:active {
+    background-color: #ccc;
+}
+
+#formulario #preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#divAviso {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%; /* Aumente o tamanho para melhorar a visibilidade */
+    margin: 20px auto; /* Centraliza a div na tela */
+}
+
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.imagemDoAtleta {
+    width: 50px; /* Tamanho da imagem */
+    height: 50px; /* Tamanho da imagem */
+    border-radius: 50%; /* Tornando a imagem redonda */
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    select {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<div id="formulario">
+   <h1>Cadastro de Atletas</h1>
+   
+   <!-- Formulário para cadastro -->
+   <label for="inputNum">Número do atleta:</label>
+   <input type="number" name="inputNum" id="inputNum" min="1">
+   <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+   <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+   <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+   <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+   <br><br>
+   
+   <label for="inputNome">Nome do atleta:</label>
+   <input type="text" name="inputNome" id="inputNome">
+   <br>
+   <label for="dataNascimento">Data de Nascimento:</label>
+   <input type="date" id="dataNascimento"> <br>
+   
+   <label for="selectPosicao">Posição do atleta:</label>
+   <select name="selectPosicao" id="selectPosicao">
+       <option value="selectOpc" disabled selected>Selecione uma opção</option>
+       <option value="goleiro">Goleiro</option>
+       <option value="defensor">Defensor</option>
+       <option value="meio-campista">Meio-campista</option>
+       <option value="atacante">Atacante</option>
+   </select> <br>
+   
+   <label for="inputAltura">Altura (m):</label>
+   <input type="number" name="inputAltura" id="inputAltura" step="0.01">
+   <br>
+   <label for="inputPeso">Peso (kg):</label>
+   <input type="number" name="inputPeso" id="inputPeso" step="0.1">
+   <br>
+   <label for="inputImagem">Imagem do atleta:</label>
+   <input type="file" id="inputImagem" accept="image/*" onchange="previewImagem(event)">
+   <img id="preview" src="" alt="Pré-visualização da imagem" style="display: none; width: 100px; height: auto;">
+   <br><br>
+   
+   <div id="divAviso" style="display: none;"></div>
+   <br>
+   <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+   <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+   <br><br>
+   <input type="button" value="Salvar dados" onclick="fazerDownload()">
+   <input type="button" value="Buscar dados salvos" onclick="fazerUpload()">
+   <br><br>
+</div>
+   <!-- Tabela para listar atletas -->
+   <table id="outputSaida" border="1">
+       <thead>
+           <tr>
+               <th>Imagem</th>
+               <th>Número</th>
+               <th>Nome</th>
+               <th>Data de Nascimento</th>
+               <th>Posição</th>
+               <th>Altura (m)</th>
+               <th>Peso (kg)</th>
+           </tr>
+       </thead>
+       <tbody>
+           <!-- Dados dos atletas serão inseridos aqui -->
+       </tbody>
+   </table>
+
+   <script>
+
+class Atleta {
+    constructor(imagem, num, nome, nascimento, posicao, altura, peso, posicaoNaLista) {
+        this.imagem = imagem;
+        this.num = num;
+        this.nome = nome;
+        this.nascimento = nascimento;
+        this.posicao = posicao;
+        this.altura = altura;
+        this.peso = peso;
+        this.posicaoNaLista = posicaoNaLista;
+    }
+}
+
 let listaAtleta = []; //conjunto de dados
 let oQueEstaFazendo = ''; //variável global de controle
 let atleta = null; //variavel global 
 carregarAtletasPredefinidos(listaAtleta);
 bloquearAtributos(true);
-
 //backend (não interage com o html)
 function procurePorChavePrimaria(chave) {
     for (let i = 0; i < listaAtleta.length; i++) {
@@ -29,7 +277,6 @@ function procure() {
             limparAtributos();
             visibilidadeDosBotoes('none', 'inline', 'none', 'none', 'none', 'inline');
             mostrarAviso("Não achou na lista, pode inserir");
-            document.getElementById("inputNum").soLeitura = true;
         }
     } else {
         document.getElementById("inputNum").focus();
@@ -40,11 +287,11 @@ function procure() {
 //backend->frontend
 function carregarAtletasPredefinidos() {
     const atletasPredefinidos = [
-        new Atleta('10', 'Carlos Silva', '1990-01-01', 'goleiro', 1.80, 78.8),
-        new Atleta('29', 'Joaquim Souza', '1995-02-02', 'defensor', 1.75, 80.0),
-        new Atleta('3', 'Maria Santos', '1998-03-03', 'meio-campista', 1.70, 75.0),
-        new Atleta('41', 'Pedro Pereira', '2000-04-04', 'atacante', 1.85, 90.0),
-        new Atleta('5', 'Ana Rodrigues', '2002-05-05', 'meio-campista', 1.65, 70.0),
+        new Atleta('carlos.jpg', '10', 'Carlos Silva', '1990-01-01', 'goleiro', 1.80, 78.8),
+        new Atleta('', '29', 'Joaquim Souza', '1995-02-02', 'defensor', 1.75, 80.0),
+        new Atleta('', '3', 'Maria Santos', '1998-03-03', 'meio-campista', 1.70, 75.0),
+        new Atleta('', '41', 'Pedro Pereira', '2000-04-04', 'atacante', 1.85, 90.0),
+        new Atleta('', '5', 'Ana Rodrigues', '2002-05-05', 'meio-campista', 1.65, 70.0),
     ];
 
     listaAtleta = atletasPredefinidos;
@@ -57,6 +304,7 @@ function fazerDownload() {
     for (let i = 0; i < listaAtleta.length; i++) {
         const atleta = listaAtleta[i];
         textoCSV += 
+            atleta.imagem + ";" +
             atleta.num + ";" +
             atleta.nome + ";" +
             atleta.nascimento + ";" +
@@ -96,12 +344,13 @@ function processarArquivo(arquivo) {
         const conteudo = event.target.result;
         const linhas = conteudo.split("\n");
         listaAtleta = [];
-        for (let i = 0; i < linhas.length; i++) {
+        for (let i = 1; i < linhas.length; i++) {
             const linha = linhas[i].trim();
             if (linha) {
                 const dados = linha.split(";");
-                if (dados.length == 6) {
+                if (dados.length == 7) {
                     listaAtleta.push({
+                        imagem: dados[0],
                         num: dados[0],
                         nome: dados[1],
                         nascimento: dados[2],
@@ -117,13 +366,28 @@ function processarArquivo(arquivo) {
     leitor.readAsText(arquivo);
 }
 
+// Função para pré-visualizar a imagem selecionada
+function previewImagem(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
 function inserir() {
     bloquearAtributos(false);
     visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
     oQueEstaFazendo = 'inserindo';
     mostrarAviso("INSERINDO - Digite os atributos e clic o botão salvar");
     document.getElementById("inputNum").focus();
-
+    document.getElementById("inputImagem").value = ""; // Limpa a imagem anterior
+    document.getElementById("preview").style.display = 'none';
 }
 
 // Função para alterar um elemento da lista
@@ -165,16 +429,18 @@ function salvar() {
     const posicao = document.getElementById("selectPosicao").value;
     const altura = parseFloat(document.getElementById("inputAltura").value);
     const peso = parseFloat(document.getElementById("inputPeso").value);
+    const imagem = document.getElementById("preview").src; // Captura a imagem em Base64
     //verificar se o que foi digitado pelo USUÁRIO está correto
     if (num > 0 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
         switch (oQueEstaFazendo) {
             case 'inserindo':
-                atleta = new Atleta(num, nome, nascimento, posicao, altura, peso);
+                atleta = new Atleta(imagem, num, nome, nascimento, posicao, altura, peso);
                 listaAtleta.push(atleta);
                 mostrarAviso("Inserido na lista", 5000);
+                
                 break;
             case 'alterando':
-                atletaAlterado = new Atleta(num, nome, nascimento, posicao, altura, peso);
+                atletaAlterado = new Atleta(imagem, num, nome, nascimento, posicao, altura, peso);
                 listaAtleta[atleta.posicaoNaLista] = atletaAlterado;
                 mostrarAviso("Alterado", 5000);
                 break;
@@ -204,6 +470,7 @@ function salvar() {
 
 //backend
 
+//backend->frontend (interage com html)
 function listar() {
     // Seleciona o tbody da tabela onde os dados serão inseridos
     const tbody = document.getElementById("outputSaida").getElementsByTagName("tbody")[0];
@@ -214,15 +481,15 @@ function listar() {
         const atleta = listaAtleta[i];
 
         // Constrói a linha HTML com os dados do atleta
-        if (atleta.num )
         html += `
             <tr>
+               <td><img src="${atleta.imagem}" alt="Imagem do atleta" class="imagemDoAtleta"></td>
                 <td>${atleta.num}</td>
                 <td>${atleta.nome}</td>
                 <td>${atleta.nascimento}</td>
                 <td>${atleta.posicao}</td>
-                <td>${atleta.altura.toFixed(2)}</td>
-                <td>${atleta.peso.toFixed(1)}</td>
+                <td>${atleta.altura}</td>
+                <td>${atleta.peso}</td>
             </tr>
         `;
     }
@@ -230,8 +497,6 @@ function listar() {
     // Define o HTML construído diretamente no tbody
     tbody.innerHTML = html;
 }
-
-//backend->frontend (interage com html)
 
     
 
@@ -258,6 +523,7 @@ function mostrarAviso(mensagem, tempo) {
 
 // Função para mostrar os dados do atleta nos campos
 function mostrarDadosAtleta(atleta) {
+    document.getElementById("preview").src = atleta.imagem;
     document.getElementById("inputNum").value = atleta.num;
     document.getElementById("inputNome").value = atleta.nome;
     document.getElementById("dataNascimento").value = atleta.nascimento;
@@ -271,7 +537,6 @@ function mostrarDadosAtleta(atleta) {
             break;
         }
     }
-
     document.getElementById("inputAltura").value = atleta.altura;
     document.getElementById("inputPeso").value = atleta.peso;
     // Define os campos como readonly
@@ -280,6 +545,7 @@ function mostrarDadosAtleta(atleta) {
 
 // Função para limpar os dados dos campos
 function limparAtributos() {
+    document.getElementById("preview").src = "alt = selecione uma imagem";
     document.getElementById("inputNome").value = "";
     document.getElementById("dataNascimento").value = "";
     document.getElementById("selectPosicao").value = "selectOpc";
@@ -296,6 +562,7 @@ function bloquearAtributos(soLeitura) {
     document.getElementById("selectPosicao").disabled = soLeitura;
     document.getElementById("inputAltura").disabled = soLeitura;
     document.getElementById("inputPeso").disabled = soLeitura;
+    document.getElementById("inputImagem").disabled = soLeitura;
 }
 
 // Função para deixar visível ou invisível os botões
@@ -313,3 +580,7 @@ function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSal
     document.getElementById("divAviso").style.display = aviso;
     document.getElementById("inputNum").focus();
 }
+   </script> 
+</body>
+
+</html>
