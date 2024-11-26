@@ -25,11 +25,12 @@ function procure() {
             mostrarDadosAtleta(atleta);
             visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'inline', 'inline'); // Habilita botões de alterar e excluir
             mostrarAviso("Achou na lista, pode alterar ou excluir");
+            document.getElementById("inputNum").readOnly = true;
         } else { //não achou na lista
             limparAtributos();
             visibilidadeDosBotoes('none', 'inline', 'none', 'none', 'none', 'inline');
             mostrarAviso("Não achou na lista, pode inserir");
-            document.getElementById("inputNum").soLeitura = true;
+            document.getElementById("inputNum").readOnly = true;
         }
     } else {
         document.getElementById("inputNum").focus();
@@ -123,7 +124,6 @@ function inserir() {
     oQueEstaFazendo = 'inserindo';
     mostrarAviso("INSERINDO - Digite os atributos e clic o botão salvar");
     document.getElementById("inputNum").focus();
-
 }
 
 // Função para alterar um elemento da lista
@@ -166,7 +166,7 @@ function salvar() {
     const altura = parseFloat(document.getElementById("inputAltura").value);
     const peso = parseFloat(document.getElementById("inputPeso").value);
     //verificar se o que foi digitado pelo USUÁRIO está correto
-    if (num > 0 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
+    if (num > 0 && num < 100 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
         switch (oQueEstaFazendo) {
             case 'inserindo':
                 atleta = new Atleta(num, nome, nascimento, posicao, altura, peso);
@@ -280,6 +280,7 @@ function mostrarDadosAtleta(atleta) {
 
 // Função para limpar os dados dos campos
 function limparAtributos() {
+    document.getElementById("inputNum").readOnly = false;
     document.getElementById("inputNome").value = "";
     document.getElementById("dataNascimento").value = "";
     document.getElementById("selectPosicao").value = "selectOpc";
