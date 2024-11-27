@@ -1,0 +1,12 @@
+function carregarAtletasPredefinidos() {
+    const atletasPredefinidos = [
+        new Atleta('10', 'Carlos Silva', '1990-01-01', 'goleiro', 1.80, 78.8),
+        new Atleta('29', 'Joaquim Souza', '1995-02-02', 'defensor', 1.75, 80.0),
+        new Atleta('3', 'Maria Santos', '1998-03-03', 'meio-campista', 1.70, 75.0),
+        new Atleta('41', 'Pedro Pereira', '2000-04-04', 'atacante', 1.85, 90.0),
+        new Atleta('5', 'Ana Rodrigues', '2002-05-05', 'meio-campista', 1.65, 70.0),
+    ];
+
+    listaAtleta = atletasPredefinidos;
+    listar(); // Exibe os atletas na tela
+}

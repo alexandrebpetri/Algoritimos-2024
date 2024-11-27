@@ -3,6 +3,7 @@ let oQueEstaFazendo = ''; //variável global de controle
 let atleta = null; //variavel global 
 carregarAtletasPredefinidos(listaAtleta);
 bloquearAtributos(true);
+configurarInputsNumericos();
 
 //backend (não interage com o html)
 function procurePorChavePrimaria(chave) {
@@ -23,12 +24,12 @@ function procure() {
         atleta = procurePorChavePrimaria(num);
         if (atleta) { //achou na lista
             mostrarDadosAtleta(atleta);
-            visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'inline', 'inline'); // Habilita botões de alterar e excluir
+            visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'none', 'inline', 'inline'); // Habilita botões de alterar e excluir
             mostrarAviso("Achou na lista, pode alterar ou excluir");
             document.getElementById("inputNum").readOnly = true;
         } else { //não achou na lista
             limparAtributos();
-            visibilidadeDosBotoes('none', 'inline', 'none', 'none', 'none', 'inline');
+            visibilidadeDosBotoes('none', 'inline', 'none', 'none', 'none', 'inline', 'inline');
             mostrarAviso("Não achou na lista, pode inserir");
             document.getElementById("inputNum").readOnly = true;
         }
@@ -102,14 +103,7 @@ function processarArquivo(arquivo) {
             if (linha) {
                 const dados = linha.split(";");
                 if (dados.length == 6) {
-                    listaAtleta.push({
-                        num: dados[0],
-                        nome: dados[1],
-                        nascimento: dados[2],
-                        posicao: dados[3],
-                        altura: dados[4],
-                        peso: dados[5]
-                    });
+                    listaAtleta.push(new Atleta(dados[0], dados[1], dados[2], dados[3], parseFloat(dados[4]), parseFloat(dados[5])));
                 }
             }
         }
@@ -166,7 +160,7 @@ function salvar() {
     const altura = parseFloat(document.getElementById("inputAltura").value);
     const peso = parseFloat(document.getElementById("inputPeso").value);
     //verificar se o que foi digitado pelo USUÁRIO está correto
-    if (num > 0 && num < 100 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
+    if (num > 0 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
         switch (oQueEstaFazendo) {
             case 'inserindo':
                 atleta = new Atleta(num, nome, nascimento, posicao, altura, peso);
@@ -192,7 +186,7 @@ function salvar() {
                 // console.error('Ação não reconhecida: ' + oQueEstaFazendo);
                 mostrarAviso("Erro aleatório");
         }
-        visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'inline');
+        visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'none', 'inline');
         limparAtributos();
         listar();
         document.getElementById("inputNum").focus();
@@ -213,14 +207,16 @@ function listar() {
     for (let i = 0; i < listaAtleta.length; i++) {
         const atleta = listaAtleta[i];
 
+        // Corrige a capitalização da posição
+        const posicaoFormatada = atleta.posicao.charAt(0).toUpperCase() + atleta.posicao.slice(1).toLowerCase();
+
         // Constrói a linha HTML com os dados do atleta
-        if (atleta.num )
         html += `
             <tr>
                 <td>${atleta.num}</td>
                 <td>${atleta.nome}</td>
                 <td>${atleta.nascimento}</td>
-                <td>${atleta.posicao}</td>
+                <td>${posicaoFormatada}</td>  <!-- Mostra a posição com a primeira letra maiúscula -->
                 <td>${atleta.altura.toFixed(2)}</td>
                 <td>${atleta.peso.toFixed(1)}</td>
             </tr>
@@ -231,6 +227,7 @@ function listar() {
     tbody.innerHTML = html;
 }
 
+
 //backend->frontend (interage com html)
 
     
@@ -238,7 +235,7 @@ function listar() {
 function cancelarOperacao() {
     limparAtributos();
     bloquearAtributos(true);
-    visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'inline');
+    visibilidadeDosBotoes('inline', 'none', 'none', 'none', 'none', 'none', 'inline');
     mostrarAviso("Cancelou a operação de edição" , 5000);
 }
 
@@ -300,7 +297,7 @@ function bloquearAtributos(soLeitura) {
 }
 
 // Função para deixar visível ou invisível os botões
-function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSalvar, aviso) {
+function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSalvar,btCancelar,  aviso) {
     //  visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline'); 
     //none significa que o botão ficará invisível (visibilidade == none)
     //inline significa que o botão ficará visível 
@@ -310,7 +307,37 @@ function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSal
     document.getElementById("btAlterar").style.display = btAlterar;
     document.getElementById("btExcluir").style.display = btExcluir;
     document.getElementById("btSalvar").style.display = btSalvar;
-    document.getElementById("btCancelar").style.display = btSalvar; // o cancelar sempre aparece junto com o salvar
+    document.getElementById("btCancelar").style.display = btCancelar; // o cancelar sempre aparece junto com o salvar
     document.getElementById("divAviso").style.display = aviso;
     document.getElementById("inputNum").focus();
+}
+
+//Função para validar a entrada numerica
+function validarEntradaNumerica(event) {
+    const tecla = event.key;
+
+    // Permite Backspace, Delete, Tab, Esc, Enter, e setas
+    if (
+        tecla === 'Backspace' || tecla === 'Delete' || 
+        tecla === 'Tab' || tecla === 'Escape' || tecla === 'Enter' || 
+        tecla === 'ArrowLeft' || tecla === 'ArrowRight'
+    ) {
+        return; // Permite essas teclas
+    }
+
+    // Bloqueia qualquer tecla que não seja de 0 a 9, ou as específicas 'e', 'E', '+', '-'
+    if ((tecla < '0' || tecla > '9') || tecla === 'e' || tecla === 'E' || tecla === '+' || tecla === '-') {
+        event.preventDefault(); // Impede a entrada
+    }
+}
+
+// Função para configurar os inputs do tipo 'number'
+function configurarInputsNumericos() {
+    // Seleciona todos os inputs do tipo 'number'
+    const inputsNumericos = document.querySelectorAll('input[type="number"]');
+
+    // Adiciona o evento 'keydown' para cada input
+    for (let i = 0; i < inputsNumericos.length; i++) {
+        inputsNumericos[i].addEventListener('keydown', validarEntradaNumerica);
+    }
 }
