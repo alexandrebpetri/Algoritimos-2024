@@ -1,17 +1,17 @@
-let listaAtleta = []; //conjunto de dados
+let listaJogador = []; //conjunto de dados
 let oQueEstaFazendo = ''; //variável global de controle
-let atleta = null; //variavel global 
-carregarAtletasPredefinidos(listaAtleta);
+let jogador = null; //variavel global 
+carregarJogadoresPredefinidos(listaJogador);
 bloquearAtributos(true);
 configurarInputsNumericos();
 
 //backend (não interage com o html)
 function procurePorChavePrimaria(chave) {
-    for (let i = 0; i < listaAtleta.length; i++) {
-        const atleta = listaAtleta[i];
-        if (atleta.num == chave) {
-            atleta.posicaoNaLista = i;
-            return listaAtleta[i];
+    for (let i = 0; i < listaJogador.length; i++) {
+        const jogador = listaJogador[i];
+        if (jogador.num == chave) {
+            jogador.posicaoNaLista = i;
+            return listaJogador[i];
         }
     }
     return null;//não achou
@@ -21,9 +21,9 @@ function procurePorChavePrimaria(chave) {
 function procure() {
     const num = document.getElementById("inputNum").value;
     if (num) { // se digitou um num
-        atleta = procurePorChavePrimaria(num);
-        if (atleta) { //achou na lista
-            mostrarDadosAtleta(atleta);
+        jogador = procurePorChavePrimaria(num);
+        if (jogador) { //achou na lista
+            mostrarDadosAtleta(jogador);
             visibilidadeDosBotoes('none', 'none', 'inline', 'inline', 'none', 'inline', 'inline'); // Habilita botões de alterar e excluir
             mostrarAviso("Achou na lista, pode alterar ou excluir");
             document.getElementById("inputNum").readOnly = true;
@@ -40,31 +40,31 @@ function procure() {
 }
 
 //backend->frontend
-function carregarAtletasPredefinidos() {
+function carregarJogadoresPredefinidos() {
     const atletasPredefinidos = [
-        new Atleta('10', 'Carlos Silva', '1990-01-01', 'goleiro', 1.80, 78.8),
-        new Atleta('29', 'Joaquim Souza', '1995-02-02', 'defensor', 1.75, 80.0),
-        new Atleta('3', 'Maria Santos', '1998-03-03', 'meio-campista', 1.70, 75.0),
-        new Atleta('41', 'Pedro Pereira', '2000-04-04', 'atacante', 1.85, 90.0),
-        new Atleta('5', 'Ana Rodrigues', '2002-05-05', 'meio-campista', 1.65, 70.0),
+        new Jogador('10', 'Carlos Silva', '1990-01-01', 'goleiro', 1.80, 78.8),
+        new Jogador('29', 'Joaquim Souza', '1995-02-02', 'defensor', 1.75, 80.0),
+        new Jogador('3', 'Maria Santos', '1998-03-03', 'meio-campista', 1.70, 75.0),
+        new Jogador('41', 'Pedro Pereira', '2000-04-04', 'atacante', 1.85, 90.0),
+        new Jogador('5', 'Ana Rodrigues', '2002-05-05', 'meio-campista', 1.65, 70.0),
     ];
 
-    listaAtleta = atletasPredefinidos;
+    listaJogador = atletasPredefinidos;
     listar(); // Exibe os atletas na tela
 }
 
 function fazerDownload() {
-    let nomeParaSalvar = "Atletas.csv";
+    let nomeParaSalvar = "Jogadores.csv";
     let textoCSV = "";
-    for (let i = 0; i < listaAtleta.length; i++) {
-        const atleta = listaAtleta[i];
+    for (let i = 0; i < listaJogador.length; i++) {
+        const jogador = listaJogador[i];
         textoCSV += 
-            atleta.num + ";" +
-            atleta.nome + ";" +
-            atleta.nascimento + ";" +
-            atleta.posicao + ";" +
-            atleta.altura + ";" +
-            atleta.peso + "\n";
+            jogador.num + ";" +
+            jogador.nome + ";" +
+            jogador.nascimento + ";" +
+            jogador.posicao + ";" +
+            jogador.altura + ";" +
+            jogador.peso + "\n";
     }
     salvarEmArquivo(nomeParaSalvar, textoCSV);
 }
@@ -97,13 +97,13 @@ function processarArquivo(arquivo) {
     leitor.onload = function(event) {
         const conteudo = event.target.result;
         const linhas = conteudo.split("\n");
-        listaAtleta = [];
+        listaJogador = [];
         for (let i = 0; i < linhas.length; i++) {
             const linha = linhas[i].trim();
             if (linha) {
                 const dados = linha.split(";");
                 if (dados.length == 6) {
-                    listaAtleta.push(new Atleta(dados[0], dados[1], dados[2], dados[3], parseFloat(dados[4]), parseFloat(dados[5])));
+                    listaJogador.push(new Jogador(dados[0], dados[1], dados[2], dados[3], parseFloat(dados[4]), parseFloat(dados[5])));
                 }
             }
         }
@@ -115,7 +115,7 @@ function processarArquivo(arquivo) {
 function inserir() {
     const id = parseInt(document.getElementById("inputNum").value);
     if (procurePorChavePrimaria(id) != null) {
-        mostrarAviso("Já existe um atleta com esse número, digite outro número");
+        mostrarAviso("Já existe um jogador com esse número, digite outro número");
     } else {
     bloquearAtributos(false);
     visibilidadeDosBotoes('none', 'none', 'none', 'none', 'inline', 'inline'); //visibilidadeDosBotoes(procure,inserir,alterar,excluir,salvar)
@@ -147,16 +147,18 @@ function excluir() {
     bloquearAtributos(true);
 }
 
+//gerencia operações inserir, alterar e excluir na lista
+
 function salvar() {
-    //gerencia operações inserir, alterar e excluir na lista
+
 
     // obter os dados a partir do html
 
     let num;
-    if (atleta == null) {
+    if (jogador == null) {
         num = document.getElementById("inputNum").value;
     } else {
-        num = atleta.num;
+        num = jogador.num;
     }
 
     const nome = document.getElementById("inputNome").value;
@@ -168,23 +170,23 @@ function salvar() {
     if (num > 0 && nome && nascimento && posicao && altura > 0 && peso > 0) {// se tudo certo 
         switch (oQueEstaFazendo) {
             case 'inserindo':
-                atleta = new Atleta(num, nome, nascimento, posicao, altura, peso);
-                listaAtleta.push(atleta);
+                jogador = new Jogador(num, nome, nascimento, posicao, altura, peso);
+                listaJogador.push(jogador);
                 mostrarAviso("Inserido na lista", 5000);
                 break;
             case 'alterando':
-                atletaAlterado = new Atleta(num, nome, nascimento, posicao, altura, peso);
-                listaAtleta[atleta.posicaoNaLista] = atletaAlterado;
+                atletaAlterado = new Jogador(num, nome, nascimento, posicao, altura, peso);
+                listaJogador[jogador.posicaoNaLista] = atletaAlterado;
                 mostrarAviso("Alterado", 5000);
                 break;
             case 'excluindo':
                 let novaLista = [];
-                for (let i = 0; i < listaAtleta.length; i++) {
-                    if (atleta.posicaoNaLista != i) {
-                        novaLista.push(listaAtleta[i]);
+                for (let i = 0; i < listaJogador.length; i++) {
+                    if (jogador.posicaoNaLista != i) {
+                        novaLista.push(listaJogador[i]);
                     }
                 }
-                listaAtleta = novaLista;
+                listaJogador = novaLista;
                 mostrarAviso("EXCLUIDO", 5000);
                 break;
             default:
@@ -208,22 +210,20 @@ function listar() {
     const tbody = document.getElementById("outputSaida").getElementsByTagName("tbody")[0];
     let html = ""; // Variável para construir o HTML das linhas
 
-    // Itera sobre cada atleta na lista
-    for (let i = 0; i < listaAtleta.length; i++) {
-        const atleta = listaAtleta[i];
+    // Itera sobre cada jogador na lista
+    for (let i = 0; i < listaJogador.length; i++) {
+        const jogador = listaJogador[i];
 
-        // Corrige a capitalização da posição
-        const posicaoFormatada = atleta.posicao.charAt(0).toUpperCase() + atleta.posicao.slice(1).toLowerCase();
-
-        // Constrói a linha HTML com os dados do atleta
+        const posicaoFormatada = jogador.posicao.charAt(0).toUpperCase() + jogador.posicao.slice(1).toLowerCase();
+        // Constrói a linha HTML com os dados do jogador
         html += `
             <tr>
-                <td>${atleta.num}</td>
-                <td>${atleta.nome}</td>
-                <td>${atleta.nascimento}</td>
-                <td>${posicaoFormatada}</td>  <!-- Mostra a posição com a primeira letra maiúscula -->
-                <td>${atleta.altura.toFixed(2)}</td>
-                <td>${atleta.peso.toFixed(1)}</td>
+                <td>${jogador.num}</td>
+                <td>${jogador.nome}</td>
+                <td>${jogador.nascimento}</td>
+                <td>${posicaoFormatada}</td>
+                <td>${jogador.altura.toFixed(2)}</td>
+                <td>${jogador.peso.toFixed(1)}</td>
             </tr>
         `;
     }
@@ -234,8 +234,6 @@ function listar() {
 
 
 //backend->frontend (interage com html)
-
-    
 
 function cancelarOperacao() {
     limparAtributos();
@@ -258,13 +256,13 @@ function mostrarAviso(mensagem, tempo) {
 
 }
 
-// Função para mostrar os dados do atleta nos campos
-function mostrarDadosAtleta(atleta) {
-    document.getElementById("inputNum").value = atleta.num;
-    document.getElementById("inputNome").value = atleta.nome;
-    document.getElementById("dataNascimento").value = atleta.nascimento;
+// Função para mostrar os dados do jogador nos campos
+function mostrarDadosAtleta(jogador) {
+    document.getElementById("inputNum").value = jogador.num;
+    document.getElementById("inputNome").value = jogador.nome;
+    document.getElementById("dataNascimento").value = jogador.nascimento;
     let posicaoSelect = document.getElementById("selectPosicao");
-    let posicaoValue = atleta.posicao.toLowerCase(); // transforma em minúsculas para garantir a correspondência
+    let posicaoValue = jogador.posicao.toLowerCase(); // transforma em minúsculas para garantir a correspondência
 
     // Encontra a opção com o valor correspondente e seleciona-a
     for (let i = 0; i < posicaoSelect.options.length; i++) {
@@ -274,8 +272,8 @@ function mostrarDadosAtleta(atleta) {
         }
     }
 
-    document.getElementById("inputAltura").value = atleta.altura;
-    document.getElementById("inputPeso").value = atleta.peso;
+    document.getElementById("inputAltura").value = jogador.altura;
+    document.getElementById("inputPeso").value = jogador.peso;
     // Define os campos como readonly
     bloquearAtributos(true);
 }
