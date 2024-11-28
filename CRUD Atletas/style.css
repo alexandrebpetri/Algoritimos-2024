@@ -2,19 +2,20 @@ body {
     font-family: Arial, sans-serif;
     margin: 0, 0, 5px, 0;
     text-align: center;
-    /* background: linear-gradient(to bottom, #3d1eb1, #a50e0e); */
 }    
 
 #formulario {
     position: absolute;
     top: 0;
     left: 0;
-    width: 40%;
+    width: 39%;
     height: 100%;
     background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #formulario h1 {
+    margin-top: 20px;
     margin-bottom: 20px;
     color: #333;
     font-size: 35px;
@@ -71,9 +72,7 @@ body {
     margin: 20px auto; /* Centraliza a div na tela */
 }
 
-
-
-table {
+#tabela {
     position: fixed;
     top: 0;
     right: 0;
@@ -81,6 +80,19 @@ table {
     background-color: white;
     border-radius: 5px;
     border-collapse: collapse;
+}
+
+#tabela h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 35px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 16px;
 }
 
 th, td {
@@ -104,13 +116,20 @@ tr:hover {
         position: relative;
         width: 100%;
         height: auto;
-        border-bottom: 2px solid #aaaaaa;
+        }
+
+    #tabela {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #tabela h1 {
+        font-size: 24px;
     }
 
     table {
-        position: relative;
-        width: 100%;
-        margin-top: 0;
+        font-size: 12px;
     }
 }
 

@@ -315,6 +315,7 @@ function visibilidadeDosBotoes(btProcure, btInserir, btAlterar, btExcluir, btSal
 //Função para validar a entrada numerica
 function validarEntradaNumerica(event) {
     const tecla = event.key;
+    const input = event.target;
 
     // Permite Backspace, Delete, Tab, Esc, Enter, e setas
     if (
@@ -323,6 +324,14 @@ function validarEntradaNumerica(event) {
         tecla === 'ArrowLeft' || tecla === 'ArrowRight'
     ) {
         return; // Permite essas teclas
+    }
+
+    // Verifica se o input é de altura ou peso
+    if (input.id === 'inputAltura' || input.id === 'inputPeso') {
+        // Permite as teclas de ponto e vírgula
+        if (tecla === '.' || tecla === ',') {
+            return;
+        }
     }
 
     // Bloqueia qualquer tecla que não seja de 0 a 9, ou as específicas 'e', 'E', '+', '-'
