@@ -9,9 +9,10 @@ body {
     top: 0;
     left: 0;
     width: 39%;
-    height: fit-content;
+    height: 100vh; /* Ajustado para ocupar toda a tela */
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Caso o conteúdo exceda o tamanho */
 }
 
 #formulario h1 {

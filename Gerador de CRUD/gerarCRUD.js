@@ -22,6 +22,7 @@ function gerarView() {
     let nomeClasse = document.getElementById("inputNomeClasse").value.trim();
     let atributos = document.getElementById("inputAtributos").value.trim().split(",").map(attr => attr.trim());
     let nomeClasseMaiuscula = nomeClasse.charAt(0).toUpperCase() + nomeClasse.slice(1);
+    let tiposAtributos = document.getElementById("inputTipos").value.trim().split(",").map(attr => attr.trim());
 
     // Inicia o HTML do formulário
     codigoFonte = `<!DOCTYPE html>
@@ -38,23 +39,37 @@ function gerarView() {
     for (let i = 0; i < 1; i++) {
         let chavePrimaria = atributos[i].toLowerCase();
         let chaveMaiuscula = chavePrimaria.charAt(0).toUpperCase() + chavePrimaria.slice(1);
+        for (let j = 0; j < 1; j++) {
+            let inputChave = tiposAtributos[j];
+            let inputChaveMin = inputChave.toLowerCase();
+            if (inputChaveMin == "string") {
+                inputChave = "text";
+            } else if (inputChaveMin == "int" || inputChaveMin == "float") {
+                inputChave = "number";
+            } else if (inputChaveMin == "date") {
+                inputChave = "date";
+            }
+        
     codigoFonte += `    <label for="input${chaveMaiuscula}">${chaveMaiuscula}:</label>
-    <input type="number" name="input${chaveMaiuscula}" id="input${chaveMaiuscula}">
+    <input type="${inputChave}" name="input${chaveMaiuscula}" id="input${chaveMaiuscula}">
     <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
     <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
     <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
     <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
-    <br><br>\n`;
+    <br>\n`;
+        }
     }
 
     // Gera o formulário para cada atributo
-    for (let i = 1; i < atributos.length; i++) {
+     for (let i = 1; i < atributos.length; i++) {
+        let input = tiposAtributos[i];
         let attr = atributos[i].toLowerCase();
         let attrMaiusculo = attr.charAt(0).toUpperCase() + attr.slice(1);
+        
         codigoFonte += `    <label for="input${attrMaiusculo}">${attrMaiusculo}:</label>
-        <input type="text" name="input${attrMaiusculo}" id="input${attrMaiusculo}">
+        <input type="${input}" name="input${attrMaiusculo}" id="input${attrMaiusculo}">
         <br>\n`;
-    }
+     }
     
 
     // Adiciona a div para mensagens de aviso e botões de salvar/cancelar
