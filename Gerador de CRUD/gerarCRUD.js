@@ -65,6 +65,14 @@ function gerarView() {
         let input = tiposAtributos[i];
         let attr = atributos[i].toLowerCase();
         let attrMaiusculo = attr.charAt(0).toUpperCase() + attr.slice(1);
+
+        if (input == "string") {
+            input = "text";
+        } else if (input == "int" || input == "float") {
+            input = "number";
+        } else if (input == "date") {
+            input = "date";
+        }
         
         codigoFonte += `    <label for="input${attrMaiusculo}">${attrMaiusculo}:</label>
         <input type="${input}" name="input${attrMaiusculo}" id="input${attrMaiusculo}">
