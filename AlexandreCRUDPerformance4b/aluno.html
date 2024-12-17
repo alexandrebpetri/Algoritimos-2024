@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CRUD Alunos</title>
+   <link rel="stylesheet" href="aluno.css">
+</head>
+
+<body>
+
+    <div id="formulario">
+    
+        <h1>Formulário de Cadastro dos alunos</h1>
+   
+        <!-- Formulário para cadastro -->
+        <label for="inputRA">RA do aluno: </label>
+        <input type="text" name="inputRA" id="inputRA">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+        <br><br>
+   
+        <label for="inputNome">Nome do aluno: </label>
+        <input type="text" name="inputNome" id="inputNome">
+        <br>
+        <label for="dataNascimento">Data de Nascimento do aluno: </label>
+        <input type="date" id="dataNascimento"> 
+        <br>
+   
+        <label for="inputTemaLivre">Nota do CRUD de tema livre: </label>
+        <input type="number" name="inputTemaLivre" id="inputTemaLivre" step="0.1">
+        <br>
+   
+        <label for="inputInovacao">Nota da inovação: </label>
+        <input type="number" name="inputInovacao" id="inputInovacao" step="0.1">
+        <br>
+        <label for="inputPerformance">Nota da performance: </label>
+        <input type="number" name="inputPerformance" id="inputPerformance" step="0.1">
+        <br>
+        <label for="inputQ2">Nota da Questão 2: </label>
+        <input type="number" name="inputQ2" id="inputQ2" step="0.1">
+        <br>
+        <label for="inputQ3">Nota da Questão 3: </label>
+        <input type="number" name="inputQ3" id="inputQ3" step="0.1">
+        <br><br>
+   
+        <div id="divAviso" style="display: none;"></div>
+        <br>
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+        <br><br>
+        <input type="button" value="Salvar dados" onclick="fazerDownload()">
+        <input type="button" value="Buscar dados salvos" onclick="fazerUpload()">
+        <br><br>
+        <input type="button" value="Nota 4 Bimestre" onclick="nota4Bimestre()">
+        <br><br>
+        <span id="mediaTurma">Média da turma no 4 bimestre: </span>
+    </div>
+
+    <div id="tabela">
+        <h1>Lista de Alunos</h1>
+        <!-- Tabela para listar os Alunos -->
+        <table id="outputSaida" border="1">
+            <thead>
+                <tr>
+                    <th>RA</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Tema Livre</th>
+                    <th>Inovação</th>
+                    <th>Performance</th>
+                    <th>Q2</th>
+                    <th>Q3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados dos alunos serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="aluno.js"></script>
+    <script src="alunoController.js"></script>
+
+</body>
+
+</html>
