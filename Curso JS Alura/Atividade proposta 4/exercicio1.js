@@ -1,1 +1,0 @@
-console.log("Boas vindas ao meu site!");
