@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Piscina</h1>
+    <label for="largura">Digite a largura da piscina (em m):</label>
+    <input type="number" id="largura"> <br><br>
+    <label for="comprimento">Digite o comprimento da piscina (em m):</label>
+    <input type="number" id="comprimento"> <br><br>
+    <label for="profundidade">Digite a profundidade da piscina (em m):</label>
+    <input type="number" id="profundidade"> <br><br>
+    <button onclick="calcular()">calcular</button>
+    <div id="saida">...</div>
+
+    <script>
+        function calcular() {
+            let largura = parseFloat(document.getElementById("largura").value);
+            let comprimento = parseFloat(document.getElementById("comprimento").value);
+            let profundidade = parseFloat(document.getElementById("profundidade").value);
+            let resultado = piscina(largura, comprimento, profundidade);
+            document.getElementById("saida").innerText = resultado;
+        }
+
+        function piscina(largura, comprimento, profundidade) {
+            let volume = largura * comprimento * profundidade;
+            let resp = `Serão necessários ${volume} litros cúbicos de água para encher a piscina.`;
+            return resp;
+        }
+    </script>
+</body>
+</html>
