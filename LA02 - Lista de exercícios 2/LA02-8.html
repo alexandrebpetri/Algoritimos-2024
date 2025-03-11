@@ -6,6 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Apartamento</h1>
+    <label for="num">Digite o número:</label>
+    <input type="number" id="num"> <br><br>
+    <button onclick="resultado()">Calcular</button> <br><br>
+    <div id="saida">...</div>
+
+    <script>
+        function resultado() {
+        let num = parseInt(document.getElementById("num").value);
+        let resultado = calcular(num);
+        document.getElementById("saida").innerText = resultado;
+    }
+
+    function calcular(num) {
+        //pega o primeiro número usando o "Math.floor()" que pega o resto da divisão do num por 100. Ex: 204 => 2
+        let andar = Math.floor(num/100);
+        //pega o resto da divisao do num por 100. Ex: 204 => 04
+        let apartamento = num % 100;
+
+        let resp = `Andar ${andar}, apartamento ${apartamento}`;
+        return resp;
+    }
+
+    </script>
 </body>
 </html>
