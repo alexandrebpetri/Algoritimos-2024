@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Operações Mátematicas</h1>
+    <label for="num1">Digite o primeiro número:</label>
+    <input type="number" id="num1" placeholder="ps: O número deve ser positivo ;D"> <br><br>
+    <label for="num2">Digite o segundo numero:</label>
+    <input type="number" id="num2" placeholder="ps: O número deve ser positivo ;D"> <br><br>
+    <button onclick="calcular()">calcular</button> <br><br>
+    <div id="saida">...</div>
+
+    <script>
+        function calcular() {
+            let num1 = parseInt(document.getElementById("num1").value);
+            let num2 = parseInt(document.getElementById("num2").value);
+            let resultado = operacoes(num1, num2); 
+            document.getElementById("saida").innerText = resultado;
+        }
+
+        function operacoes(num1, num2) {
+            let add = num1 + num2;
+            let sub = num1 - num2;
+            let mult = num1 * num2;
+            let resp = `Primeiro Número: ${num1}, Segundo número: ${num2}, Soma: ${add}, Subtração: ${sub}, Multiplicação: ${mult}.`;
+            return resp;
+        }
+    </script>
+</body>
+</html>
